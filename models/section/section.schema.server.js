@@ -3,6 +3,7 @@ var sectionSchema = mongoose.Schema({
     name: String,
     seats: Number,
     courseId: Number,
+    maxSeat: Number,
     students: [String]
 }, {collection: 'section'});
 module.exports = sectionSchema;
