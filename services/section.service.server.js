@@ -2,8 +2,7 @@ module.exports = function (app) {
 
     app.post('/api/course/:courseId/section', createSection);
     app.get('/api/course/:courseId/section', findSectionsForCourse)
-    app.post('/api/enroll/section/:sectionId',
-        enrollStudentInSection);
+
     app.get('/api/student/section', findSectionsForStudent)
     app.get('/api/section/:sectionId/student', findStudentsForSection)
 
@@ -28,22 +27,6 @@ module.exports = function (app) {
             })
     }
 
-    function enrollStudentInSection(req, res) {
-        var user = req.session['currentUser'];
-        var sectionId = req.params.sectionId;
-        var enrollment = {};
-        enrollmentModel
-            .enrollStudentInSection(
-                user._id,
-                sectionId)
-            .then(function (_enrollment) {
-                enrollment = _enrollment;
-                return sectionModel.decrementSectionSeats(sectionId);
-            })
-            .then(function (section) {
-                res.json(enrollment);
-            })
-    }
 
     function findSectionsForStudent(req, res) {
         var user = req.session['currentUser'];
