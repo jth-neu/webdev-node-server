@@ -35,9 +35,16 @@ function findStudentsForSection(sectionId) {
         .exec();
 }
 
+function removeEnrollmentBySection(sectionId) {
+    return enrollmentModel
+        .find({section: sectionId})
+        .remove().exec();
+}
+
 module.exports = {
     enrollStudentInSection: enrollStudentInSection,
     findStudentsForSection: findStudentsForSection,
     findSectionsForStudent: findSectionsForStudent,
-    withdrawStudentFromSection: withdrawStudentFromSection
+    withdrawStudentFromSection: withdrawStudentFromSection,
+    removeEnrollmentBySection: removeEnrollmentBySection
 };

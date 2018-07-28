@@ -54,6 +54,7 @@ module.exports = function (app) {
             .then(function (sections) {
                 res.json(sections);
             })
+        enrollmentModel.removeEnrollmentBySection(sectionId);
     }
 
     function updateSection(req, res) {
