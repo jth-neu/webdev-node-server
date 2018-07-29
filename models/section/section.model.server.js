@@ -34,11 +34,16 @@ function updateSection(section) {
     });
 }
 
+function findSectionById(sectionId) {
+    return sectionModel.findById(sectionId);
+}
+
 module.exports = {
     createSection: createSection,
     findSectionsForCourse: findSectionsForCourse,
     decrementSectionSeats: decrementSectionSeats,
     incrementSectionSeats: incrementSectionSeats,
     deleteSection: deleteSection,
-    updateSection: updateSection
+    updateSection: updateSection,
+    findSectionById: findSectionById
 };
