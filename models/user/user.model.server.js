@@ -26,13 +26,17 @@ function updateUser(user,userId) {
     });
 }
 
+function deleteUser(userId) {
+    return userModel.findByIdAndRemove(userId);
+}
 
 var api = {
     createUser: createUser,
     findAllUsers: findAllUsers,
     findUserById: findUserById,
     findUserByCredentials: findUserByCredentials,
-    updateUser:updateUser
+    updateUser:updateUser,
+    deleteUser:deleteUser
 };
 
 module.exports = api;

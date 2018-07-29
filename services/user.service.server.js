@@ -2,11 +2,12 @@ module.exports = function (app) {
     app.get('/api/user', findAllUsers);
     app.get('/api/user/:userId', findUserById);
     app.get('/api/user/:username/username', findUserByUsername);
-    app.post('/api/user', createUser);
+    app.post('/api/register', createUser);
     app.get('/api/profile', profile);
     app.post('/api/logout', logout);
     app.post('/api/login', login);
     app.put('/api/user', update);
+    app.delete('/api/profile', deleteUser);
 
     var userModel = require('../models/user/user.model.server');
 
@@ -82,5 +83,10 @@ module.exports = function (app) {
             .then(function (users) {
                 res.send(users);
             })
+    }
+
+    function deleteUser(req, res) {
+        var userId = req.session.currentUser._id;
+        userModel.deleteUser(userId);
     }
 }
